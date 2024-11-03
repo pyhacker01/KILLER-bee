@@ -1,7 +1,5 @@
 #Developed by pyhacker01
 #If you are copying the code, please give credit.
-import tkinter as tk
-from tkinter import messagebox
 import time
 import threading
 import subprocess
@@ -210,14 +208,15 @@ while True:
     try:
         choice = int(input(Fore.GREEN + "Enter your choice: "))
         if choice == 1:
-            print("Scanning.... Please wait!!")
+            print("Please wait!!")
             time.sleep(6)
-            print(Fore.MAGENTA + "Note: The information provided may not be accurate.")  
-            threading.Thread(target=show_fake_error).start()
+            print(Fore.MAGENTA + "Not available at the moment... Coming soon! ")  
+            
 
         elif choice == 2:
+            time.sleep(6)
             print(Fore.RED + "Not available at the moment... Coming soon!")  
-            time.sleep(3)
+            time.sleep(1)
 
         elif choice == 3:
             time.sleep(4)
@@ -246,7 +245,6 @@ while True:
                     sub_choice = int(input(Fore.GREEN + "Enter your option: "))
 
                     if sub_choice == 1:
-                        print(Fore.RED + "Not available at the moment... Coming soon!")
                         country_code = input(Fore.GREEN + "Enter your country code (e.g., +91 for India): ")
                         phone_number = input(Fore.GREEN + "Enter your phone number: ")
                         full_phone_number = country_code + phone_number
@@ -299,7 +297,6 @@ while True:
                     print(Fore.YELLOW + "\nMonitoring stopped.")
 
         elif choice == 8:
-            print(Fore.RED + "Not available at the moment... Coming soon!")
             print(Fore.CYAN + "Starting IP spoofer..")
             time.sleep(7)
             target_ip = input(Fore.CYAN + "Enter target IP: ")
@@ -309,14 +306,15 @@ while True:
                 send_spoofed_packet(target_ip, spoofed_ip)
 
         elif choice == 9:
-            print(Fore.YELLOW+"Starting Tunneler..")
+            print("Not available at the moment... Coming soon!")
+            '''print(Fore.YELLOW+"Starting Tunneler..")
             time.sleep(6)
             port = int(input(Fore.GREEN + "Enter the port to open the Ngrok tunnel (e.g., 5000): "))
             authtoken = input(Fore.GREEN + "Enter your ngrok authtoken: ")
             try:
                 create_ngrok_tunnel(port, authtoken)
             except Exception as e:
-                print(Fore.RED + f"An error occurred: {e}")
+                print(Fore.RED + f"An error occurred: {e}")'''
 
         elif choice == 10:
             time.sleep(3)
