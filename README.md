@@ -40,7 +40,7 @@
 
 
 ## Tested Platform
-* Termux
+* Termux (Some features may not work)
 * Linux
 * Parrot OS
 * Windows
