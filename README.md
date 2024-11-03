@@ -20,8 +20,8 @@
  pkg update && pkg upgrade
  pkg install python3
  pkg install git
- git clone
- cd
+ git clone https://github.com/pyhacker01/KILLER-bee
+ cd KILLER-bee
  pip install -r requirements.txt
  python3 killer.py
 ```
@@ -32,8 +32,8 @@
  sudo apt upgrade
  sudo apt install python3
  sudo apt install git
- git clone 
- cd 
+ git clone https://github.com/pyhacker01/KILLER-bee
+ cd KILLER-bee
  pip install -r requirements.txt
  python3 killer.py
 ```
