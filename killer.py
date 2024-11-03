@@ -220,6 +220,7 @@ while True:
 
         elif choice == 3:
             time.sleep(4)
+            print(Fore.RED+"Currently not working in Termux")
             scan_wifi()
             print(Fore.RED + "Note: The information provided may not be accurate.")
 
@@ -228,6 +229,7 @@ while True:
             time.sleep(3)
 
         elif choice == 5:
+            print(Fore.RED+"NOTE - Require administrative privilege")
             target = input(Fore.RED + "Enter target IP or subnet (e.g., 192.168.1.0/24): ")
             print(Fore.GREEN + f"Scanning network: {target}")
             active_ips = scan_ip_addresses(target)
@@ -252,6 +254,7 @@ while True:
                         print(Fore.RED + "Note: The information provided may not be accurate.")
 
                     elif sub_choice == 2:
+                        print(Fore.RED+"")
                         ip_address = input(Fore.GREEN + "Enter the IP address (e.g., 8.8.8.8): ")
                         get_ip_info(ip_address)
                         print(Fore.RED + "Note: The information provided may not be accurate.")
@@ -265,6 +268,7 @@ while True:
                     print(Fore.RED + "Invalid input. Please enter a valid number.")
 
         elif choice == 7:
+            print("Require administrative privilege")
             print(Fore.CYAN + "Starting Network Sniffing...")
             time.sleep(7)
             interfaces = get_if_list()
@@ -297,6 +301,7 @@ while True:
                     print(Fore.YELLOW + "\nMonitoring stopped.")
 
         elif choice == 8:
+            print(Fore.RED+"Require administrative privilege")
             print(Fore.CYAN + "Starting IP spoofer..")
             time.sleep(7)
             target_ip = input(Fore.CYAN + "Enter target IP: ")
@@ -321,7 +326,7 @@ while True:
             print(Fore.YELLOW + f"Enjoy your day, {user}! If you like💖 my tool, please give it a star⭐ and share it with your friends!😉")
             time.sleep(10)
             print(Fore.RED + "Exiting...👋")
-            webbrowser.open(url2)
+            webbrowser.open(url)
             break
 
         elif choice == 11:
