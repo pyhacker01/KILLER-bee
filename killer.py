@@ -1,6 +1,6 @@
 #Developed by pyhacker01
 #If you are copying the code, please give credit.
-#import tkinter as tk
+import tkinter as tk
 from tkinter import messagebox
 import time
 import threading
@@ -203,6 +203,7 @@ show_banner()
 init(autoreset=True)
 api_key = 'your_api_key_here'  # Use your own API key.
 url = "https://www.instagram.com/code_dreamerr_"
+url2 = "https://whatsappcom/channel/0029VauW58x6GcGNfEXoZx41"
 
 while True:  
     show_menu()  
@@ -322,6 +323,7 @@ while True:
             print(Fore.YELLOW + f"Enjoy your day, {user}! If you like💖 my tool, please give it a star⭐ and share it with your friends!😉")
             time.sleep(10)
             print(Fore.RED + "Exiting...👋")
+            webbrowser.open(url2)
             break
 
         elif choice == 11:
