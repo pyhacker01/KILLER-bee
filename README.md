@@ -39,10 +39,23 @@
 ```
 
 
+## BlackArch Installation 
+```
+sudo pacman -Syu
+sudo pacman -S python git
+git clone https://github.com/pyhacker01/KILLER-bee
+cd KILLER-bee
+sudo pacman -S python-pip
+pip install -r requirements.txt
+python killer.py
+```
+
+
 ## Tested Platform
 * Termux (Some features may not work)
 * Linux
 * Parrot OS
+* BlackArch
 * Windows
 
 > [!WARNING]
