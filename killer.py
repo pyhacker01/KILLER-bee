@@ -15,7 +15,8 @@ from scapy.all import ARP, Ether, srp, sniff, TCP, UDP, IP, send, get_if_list
 import logging
 import re
 import nmap  
-from pyngrok import ngrok 
+from pyngrok import ngrok
+import bluetooth
 
 def is_valid_email(email):
     pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
@@ -82,6 +83,17 @@ def scan_wifi():
             print(Fore.GREEN + f"SSID: {network.ssid} | MAC: {network.bssid} | Signal: {network.signal} dBm")         
     except Exception as e:
         print(Fore.RED + f"An error occurred while scanning Wi-Fi networks: {e}")
+
+def scan_bluetooth_devices():
+    print("Scanning for nearby Bluetooth devices...")
+    nearby_devices = bluetooth.discover_devices(duration=8, lookup_names=True, flush_cache=True, lookup_class=False)
+    
+    if nearby_devices:
+        print(f"Found {len(nearby_devices)} devices.")
+        for addr, name in nearby_devices:
+            print(f"Device: {name}, Address: {addr}")
+    else:
+        print("No Bluetooth devices found.")
 
 def scan_ip_addresses(network):
     nm = nmap.PortScanner()
@@ -180,13 +192,14 @@ def show_menu():
     print(Fore.BLUE + "1 - Scan Virus")
     print(Fore.BLUE + "2 - Scan File Only")
     print(Fore.BLUE + "3 - Scan Wi-Fi")
-    print(Fore.BLUE + "4 - Scan IP(Nmap)")
-    print(Fore.BLUE + "5 - Phone Number & IP Information")
-    print(Fore.BLUE + "6 - Network Sniffing")
-    print(Fore.BLUE + "7 - IP Spoofer")
-    print(Fore.BLUE + "8 - Ngrok(Port Forwarding)")
-    print(Fore.BLUE + "9 - Exit")
-    print(Fore.BLUE + "10 - Help!!")
+    print(Fore.BLUE + "4 - Bluetooth scan")
+    print(Fore.BLUE + "5 - Scan IP(Nmap)")
+    print(Fore.BLUE + "6 - Phone Number & IP Information")
+    print(Fore.BLUE + "7 - Network Sniffing")
+    print(Fore.BLUE + "8 - IP Spoofer")
+    print(Fore.BLUE + "9 - Ngrok(Port Forwarding)")
+    print(Fore.BLUE + "10 - Exit")
+    print(Fore.BLUE + "11 - Help!!")
 
 clear_terminal()
 show_banner()
@@ -216,8 +229,11 @@ while True:
             time.sleep(8)
             scan_wifi()
             print(Fore.RED + "Note: The information provided may not be accurate.")
-
         elif choice == 4:
+            time.sleep(5)
+            scan_bluetooth_devices()
+            
+        elif choice == 5:
             print(Fore.RED+"NOTE - Require administrative privilege")
             target = input(Fore.RED + "Enter target IP or subnet (e.g., 192.168.1.0/24): ")
             print(Fore.GREEN + f"Scanning network: {target}")
@@ -226,7 +242,7 @@ while True:
             for ip in active_ips:
                 print(Fore.YELLOW + ip) 
 
-        elif choice == 5:
+        elif choice == 6:
             while True:
                 try:
                     print(Fore.BLUE + "Select an option:")
@@ -256,7 +272,7 @@ while True:
                 except ValueError:
                     print(Fore.RED + "Invalid input. Please enter a valid number.")
 
-        elif choice == 6:
+        elif choice == 7:
             print(Fore.YELLOW+"Require administrative privilege")
             print(Fore.CYAN + "Starting Network Sniffing...")
             time.sleep(7)
@@ -289,7 +305,7 @@ while True:
                 except KeyboardInterrupt:
                     print(Fore.YELLOW + "\nMonitoring stopped.")
 
-        elif choice == 7:
+        elif choice == 8:
             print(Fore.RED+"Require administrative privilege")
             print(Fore.CYAN + "Starting IP spoofer..")
             time.sleep(7)
@@ -299,7 +315,7 @@ while True:
             for spoofed_ip in generate_spoofed_ips(base_spoofed_ip, count):
                 send_spoofed_packet(target_ip, spoofed_ip)
 
-        elif choice == 8:
+        elif choice == 9:
             print(Fore.RED+"Not available at the moment... Coming soon!")
             time.sleep(6)
             '''print(Fore.YELLOW+"Starting Tunneler..")
@@ -311,7 +327,7 @@ while True:
             except Exception as e:
                 print(Fore.RED + f"An error occurred: {e}")'''
 
-        elif choice == 9:
+        elif choice == 10:
             time.sleep(3)
             print(Fore.YELLOW + f"Enjoy your day, {user}! If you like💖 my tool, please give it a star⭐ and share it with your friends!😉")
             time.sleep(10)
@@ -319,7 +335,7 @@ while True:
             webbrowser.open(url_a)
             break
 
-        elif choice == 10:
+        elif choice == 11:
             print(Fore.GREEN + "Feel free to DM me with any queries🙂")
             time.sleep(3)
             webbrowser.open(url)
