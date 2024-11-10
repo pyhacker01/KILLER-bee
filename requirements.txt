@@ -4,3 +4,4 @@ colorama==0.4.6
 scapy==2.6.0
 python-nmap==0.7.1
 pyngrok==7.2.0
+pybluez
