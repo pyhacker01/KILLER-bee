@@ -53,14 +53,7 @@ def clear_terminal():
     if platform.system() == "Windows":
         os.system('cls')
     else:
-        os.system('clear')
-
-def show_fake_error():
-    root = tk.Tk()
-    root.withdraw()  
-    while True:
-        messagebox.showerror("⚠️ Error", "Virus found in your system!")
-        time.sleep(0)  
+        os.system('clear')  
 
 def scan_wifi():
     print(Fore.RED + "Scanning for Wi-Fi networks...")
@@ -187,21 +180,20 @@ def show_menu():
     print(Fore.BLUE + "1 - Scan Virus")
     print(Fore.BLUE + "2 - Scan File Only")
     print(Fore.BLUE + "3 - Scan Wi-Fi")
-    print(Fore.BLUE + "4 - Scan Bluetooth")
-    print(Fore.BLUE + "5 - Scan IP(Nmap)")
-    print(Fore.BLUE + "6 - Phone Number & IP Information")
-    print(Fore.BLUE + "7 - Network Sniffing")
-    print(Fore.BLUE + "8 - IP Spoofer")
-    print(Fore.BLUE + "9 - Ngrok(Port Forwarding)")
-    print(Fore.BLUE + "10 - Exit")
-    print(Fore.BLUE + "11 - Help!!")
+    print(Fore.BLUE + "4 - Scan IP(Nmap)")
+    print(Fore.BLUE + "5 - Phone Number & IP Information")
+    print(Fore.BLUE + "6 - Network Sniffing")
+    print(Fore.BLUE + "7 - IP Spoofer")
+    print(Fore.BLUE + "8 - Ngrok(Port Forwarding)")
+    print(Fore.BLUE + "9 - Exit")
+    print(Fore.BLUE + "10 - Help!!")
 
 clear_terminal()
 show_banner()
 init(autoreset=True)
 api_key = 'your_api_key_here'  # Use your own API key.
 url = "https://www.instagram.com/code_dreamerr_"
-url2 = "https://whatsappcom/channel/0029VauW58x6GcGNfEXoZx41"
+url_a = "https://whatsappcom/channel/0029VauW58x6GcGNfEXoZx41"
 
 while True:  
     show_menu()  
@@ -221,14 +213,11 @@ while True:
         elif choice == 3:
             time.sleep(4)
             print(Fore.RED+"Currently not working in Termux")
+            time.sleep(8)
             scan_wifi()
             print(Fore.RED + "Note: The information provided may not be accurate.")
 
         elif choice == 4:
-            print(Fore.RED + "Not available at the moment... Coming soon!")  
-            time.sleep(3)
-
-        elif choice == 5:
             print(Fore.RED+"NOTE - Require administrative privilege")
             target = input(Fore.RED + "Enter target IP or subnet (e.g., 192.168.1.0/24): ")
             print(Fore.GREEN + f"Scanning network: {target}")
@@ -237,7 +226,7 @@ while True:
             for ip in active_ips:
                 print(Fore.YELLOW + ip) 
 
-        elif choice == 6:
+        elif choice == 5:
             while True:
                 try:
                     print(Fore.BLUE + "Select an option:")
@@ -267,8 +256,8 @@ while True:
                 except ValueError:
                     print(Fore.RED + "Invalid input. Please enter a valid number.")
 
-        elif choice == 7:
-            print("Require administrative privilege")
+        elif choice == 6:
+            print(Fore.YELLOW+"Require administrative privilege")
             print(Fore.CYAN + "Starting Network Sniffing...")
             time.sleep(7)
             interfaces = get_if_list()
@@ -300,7 +289,7 @@ while True:
                 except KeyboardInterrupt:
                     print(Fore.YELLOW + "\nMonitoring stopped.")
 
-        elif choice == 8:
+        elif choice == 7:
             print(Fore.RED+"Require administrative privilege")
             print(Fore.CYAN + "Starting IP spoofer..")
             time.sleep(7)
@@ -310,8 +299,9 @@ while True:
             for spoofed_ip in generate_spoofed_ips(base_spoofed_ip, count):
                 send_spoofed_packet(target_ip, spoofed_ip)
 
-        elif choice == 9:
-            print("Not available at the moment... Coming soon!")
+        elif choice == 8:
+            print(Fore.RED+"Not available at the moment... Coming soon!")
+            time.sleep(6)
             '''print(Fore.YELLOW+"Starting Tunneler..")
             time.sleep(6)
             port = int(input(Fore.GREEN + "Enter the port to open the Ngrok tunnel (e.g., 5000): "))
@@ -321,15 +311,15 @@ while True:
             except Exception as e:
                 print(Fore.RED + f"An error occurred: {e}")'''
 
-        elif choice == 10:
+        elif choice == 9:
             time.sleep(3)
             print(Fore.YELLOW + f"Enjoy your day, {user}! If you like💖 my tool, please give it a star⭐ and share it with your friends!😉")
             time.sleep(10)
             print(Fore.RED + "Exiting...👋")
-            webbrowser.open(url)
+            webbrowser.open(url_a)
             break
 
-        elif choice == 11:
+        elif choice == 10:
             print(Fore.GREEN + "Feel free to DM me with any queries🙂")
             time.sleep(3)
             webbrowser.open(url)
