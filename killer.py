@@ -4,6 +4,7 @@ import time
 import threading
 import subprocess
 import platform
+import clamd
 import pywifi
 from pywifi import const
 import webbrowser
@@ -45,16 +46,79 @@ def show_banner():
                                  Developer:-Abhishek|version-1.0|By:-pyhacker01
                                                                                                                  """
     print(Fore.YELLOW + banner + Style.RESET_ALL)
-
+    
 def is_termux():
     return os.path.exists("/data/data/com.termux/files/home")
 
+def start_clamd_in_termux():
+    if is_termux():
+        os.system("clamd &")  
+        print("ClamAV daemon started in Termux.")
 
 def clear_terminal():
     if platform.system() == "Windows":
         os.system('cls')
     else:
-        os.system('clear')  
+        os.system('clear')
+        
+def scan_specific_file():
+    try:
+        file_path = input("Enter the path of the file to scan: ")
+        system = platform.system()
+        if is_termux():
+            start_clamd_in_termux()
+            cd = clamd.ClamdUnixSocket()
+        elif system == "Linux" or system == "Darwin":
+            cd = clamd.ClamdUnixSocket()
+        elif system == "Windows":
+            cd = clamd.ClamdNetworkSocket(host='localhost', port=3310)
+        else:
+            print("Unsupported OS.")
+            return
+        print(f"Starting scan on {file_path}...")
+        result = cd.scan_file(file_path)
+        if not result:
+            print("No virus found in the file.")
+        else:
+            for file, status in result.items():
+                print(f"{file}: {status[1]}")
+                if status[0] == 'FOUND':
+                    print(f"Virus detected in {file}: {status[1]}")
+        print("File scan completed.")
+    except Exception as e:
+        print(f"Error: {e}")
+        print("Ensure that ClamAV daemon is running and reachable.")
+
+def full_system_scan():
+    try:
+        system = platform.system()
+        if is_termux():
+            start_clamd_in_termux()
+            cd = clamd.ClamdUnixSocket()
+            root_path = "/"
+        elif system == "Linux" or system == "Darwin":
+            cd = clamd.ClamdUnixSocket()
+            root_path = "/"
+        elif system == "Windows":
+            cd = clamd.ClamdNetworkSocket(host='localhost', port=3310)
+            root_path = "C:\\"
+        else:
+            print("Unsupported OS.")
+            return
+        print(f"Starting full system scan on {root_path}...")
+        result = cd.scan(root_path)
+        if not result:
+            print("No virus found on the system.")
+        else:
+            for file, status in result.items():
+                print(f"{file}: {status[1]}")
+                if status[0] == 'FOUND':
+                    print(f"Virus detected in {file}: {status[1]}")
+        print("Full system scan completed.")
+    except Exception as e:
+        print(f"Error: {e}")
+        print("Ensure that ClamAV daemon is running and reachable.")
+
 
 def scan_wifi():
     print(Fore.RED + "Scanning for Wi-Fi networks...")
@@ -215,13 +279,11 @@ while True:
         if choice == 1:
             print("Please wait!!")
             time.sleep(6)
-            print(Fore.MAGENTA + "Not available at the moment... Coming soon! ")  
+            full_system_scan() 
             
-
         elif choice == 2:
             time.sleep(6)
-            print(Fore.RED + "Not available at the moment... Coming soon!")  
-            time.sleep(1)
+            scan_specific_file()  
 
         elif choice == 3:
             time.sleep(4)
@@ -318,14 +380,14 @@ while True:
         elif choice == 9:
             print(Fore.RED+"Not available at the moment... Coming soon!")
             time.sleep(6)
-            '''print(Fore.YELLOW+"Starting Tunneler..")
+            print(Fore.YELLOW+"Starting Tunneler..")
             time.sleep(6)
             port = int(input(Fore.GREEN + "Enter the port to open the Ngrok tunnel (e.g., 5000): "))
             authtoken = input(Fore.GREEN + "Enter your ngrok authtoken: ")
             try:
                 create_ngrok_tunnel(port, authtoken)
             except Exception as e:
-                print(Fore.RED + f"An error occurred: {e}")'''
+                print(Fore.RED + f"An error occurred: {e}")
 
         elif choice == 10:
             time.sleep(3)
