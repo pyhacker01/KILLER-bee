@@ -378,7 +378,6 @@ while True:
                 send_spoofed_packet(target_ip, spoofed_ip)
 
         elif choice == 9:
-            print(Fore.RED+"Not available at the moment... Coming soon!")
             time.sleep(6)
             print(Fore.YELLOW+"Starting Tunneler..")
             time.sleep(6)
