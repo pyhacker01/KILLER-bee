@@ -17,37 +17,51 @@
 
 ## Termux Installation
 ```
- pkg update && pkg upgrade
- pkg install python3
- pkg install git
- git clone https://github.com/pyhacker01/KILLER-bee
- cd KILLER-bee
- pip install -r requirements.txt
- python3 killer.py
+pkg update && pkg upgrade
+pkg install python3
+pkg install git
+pkg install clamav
+pkg install clamd
+pip install pyclam
+git clone https://github.com/pyhacker01/KILLER-bee
+cd KILLER-bee
+pip install -r requirements.txt
+python3 killer.py
 ```
 
 ## Linux Installation
 ```
- sudo apt update
- sudo apt upgrade
- sudo apt install python3
- sudo apt install git
- git clone https://github.com/pyhacker01/KILLER-bee
- cd KILLER-bee
- pip install -r requirements.txt
- python3 killer.py
+sudo apt update && sudo apt upgrade -y    
+sudo apt install python3 python3-pip      
+sudo apt install git                      
+sudo apt install clamav                   
+sudo apt install clamav-daemon            
+pip3 install pyclamd
+git clone https://github.com/pyhacker01/KILLER-bee
+cd KILLER-bee
+pip3 install -r requirements.txt
+sudo systemctl start clamav-daemon   
+sudo systemctl enable clamav-daemon  
+sudo clamd
+python3 killer.py
 ```
 
 
 ## BlackArch Installation 
 ```
-sudo pacman -Syu
-sudo pacman -S python git
+sudo pacman -Syu          
+sudo pacman -S python     
+sudo pacman -S git        
+sudo pacman -S clamav     
+sudo pacman -S clamd
+pip install pyclamd
 git clone https://github.com/pyhacker01/KILLER-bee
 cd KILLER-bee
-sudo pacman -S python-pip
 pip install -r requirements.txt
-python killer.py
+sudo systemctl start clamd
+sudo systemctl enable clamd
+sudo clamd
+python3 killer.py
 ```
 
 
