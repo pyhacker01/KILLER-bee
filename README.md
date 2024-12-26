@@ -13,7 +13,7 @@
 > - IP spoofing
 
 ## Author
-* [@code_dreamerr_](https://www.instagram.com/code_dreamerr_)
+* [@code_dreamerr_](https://www.instagram.com/code_dreamerr_)<br>
 
 ## Termux Installation
 ```
@@ -76,7 +76,10 @@ python3 killer.py
 > KILLER-bee is designed for ethical use. Please ensure you have the necessary permissions for scanning and information ghathering on any network ,IP address, or phone number.
 
 ## Screenshot
-![Screenshot](https://github.com/pyhacker01/KILLER-bee/blob/main/IMG-20241225-WA0000.jpg)
+* Anderoid 
+![Screenshot](https://github.com/pyhacker01/KILLER-bee/blob/main/IMG-20241225-WA0000.jpg)<br><br>
+* Pc
+![Screenshot2](https://github.com/pyhacker01/KILLER-bee/blob/main/Screenshot%20(76).png)
   
 
 ## ⭐ Give Us a Star!
